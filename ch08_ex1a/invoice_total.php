@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Invoice Total Calculator</title>
+    <link rel="stylesheet" type="text/css" href="main.css" />
+</head>
+<body>
+    <main>
+        <h1>Invoice Total Calculator</h1>
+        <p>Enter the values below and click "Calculate".</p>
+        <form action="index.php" method="post">
+        <div id="data" >
+            <label>Customer Type:</label> <?php if (!isset($customer_type)) { ?>
+            <select type="text" name="type">
+                <option value="R">R</option>
+                <option value="C">C</option>
+                <option value="T">T</option>
+                <option value="NO TYPE">No Type</option>
+            </select>
+            <?php } else { echo $customer_type; }?>
+            <br>
+             
+            <label>Invoice Subtotal:</label>
+            <input type="text" name="subtotal"
+                   value="<?php echo htmlspecialchars($invoice_subtotal); ?>"><br>
+
+            <label>Discount Percent:</label>
+            <input type="text" disabled
+                   value="<?php echo $percent; ?>"><span>%</span><br>
+
+            <label>Discount Amount:</label>
+            <input type="text" disabled
+                   value="<?php echo $discount; ?>"><br>
+
+            <label>Invoice Total:</label>
+            <input type="text" disabled
+                   value="<?php echo $total; ?>"><br>
+        </div>
+        <div id="buttons" >
+            <label>&nbsp;</label>
+            <input type="submit" value="Calculate" id="calculate_button"><br>
+        </div>
+        </form>
+        
+        <?php if (isset($customer_type)) { ?>
+        <a href="index.php">Calculate Another</a>
+        <?php } ?>
+        
+    </main>
+</body>
+</html>
